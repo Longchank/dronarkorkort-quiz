@@ -9,6 +9,7 @@
   <meta name="keywords" content="drönarkörkortet, drönare, drönarprov, A1, A2, A3, UAS, fjärrpilot, Transportstyrelsen, övning, quiz, flashkort" />
   <meta name="author" content="Drönarkörkortet Övning" />
   <meta name="robots" content="index, follow" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self';" />
   <link rel="canonical" href="https://longchank.github.io/dronarkorkort-quiz/" />
 
   <!-- Open Graph -->
@@ -209,6 +210,18 @@
 
     </section>
   </main>
+
+  <div id="disclaimer-overlay" class="disclaimer-overlay" role="dialog" aria-modal="true" aria-labelledby="disclaimer-title">
+    <div class="disclaimer-card">
+      <div class="disclaimer-icon">&#9432;</div>
+      <h2 id="disclaimer-title" class="disclaimer-title">Observera</h2>
+      <p class="disclaimer-body">
+        Frågorna och svaren i den här appen är <strong>AI-genererade</strong> och kan innehålla felaktigheter eller föråldrad information.<br><br>
+        Använd appen som ett komplement – kontrollera alltid mot Transportstyrelsens officiella studiematerial inför ditt riktiga prov.
+      </p>
+      <button id="btn-disclaimer-accept" class="btn-primary">Jag förstår</button>
+    </div>
+  </div>
 
   <script src="questions.js"></script>
   <script src="app.js"></script>

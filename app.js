@@ -406,7 +406,14 @@
       const ratio = stats.correct / stats.total;
       const row = document.createElement('div');
       row.className = 'breakdown-row';
-      row.innerHTML = `<span class="breakdown-cat">${cat}</span><span class="breakdown-score ${ratio < EXAM_PASS ? 'weak' : ''}">${stats.correct}/${stats.total}</span>`;
+      const catSpan = document.createElement('span');
+      catSpan.className = 'breakdown-cat';
+      catSpan.textContent = cat;
+      const scoreSpan = document.createElement('span');
+      scoreSpan.className = `breakdown-score${ratio < EXAM_PASS ? ' weak' : ''}`;
+      scoreSpan.textContent = `${stats.correct}/${stats.total}`;
+      row.appendChild(catSpan);
+      row.appendChild(scoreSpan);
       breakdownEl.appendChild(row);
     });
 
@@ -514,6 +521,18 @@
     btnExitExam.addEventListener('click', () => setMode('flashcard'));
 
     filterQuestions();
+
+    // Disclaimer
+    const disclaimerOverlay = document.getElementById('disclaimer-overlay');
+    if (!localStorage.getItem('disclaimer_accepted')) {
+      disclaimerOverlay.classList.remove('hidden');
+    } else {
+      disclaimerOverlay.classList.add('hidden');
+    }
+    document.getElementById('btn-disclaimer-accept').addEventListener('click', () => {
+      localStorage.setItem('disclaimer_accepted', '1');
+      disclaimerOverlay.classList.add('hidden');
+    });
   }
 
   init();
