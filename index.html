@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Drönarkörkortet – Öva inför A1/A3- och A2-provet</title>
+  <meta name="description" content="Gratis övningsapp för svenska drönarkörkortet. Öva med flashkort och quiz, eller gör ett simulerat prov för A1/A3 (40 frågor) och A2 (30 frågor). Baserat på Transportstyrelsens studiematerial." />
+  <meta name="keywords" content="drönarkörkortet, drönare, drönarprov, A1, A2, A3, UAS, fjärrpilot, Transportstyrelsen, övning, quiz, flashkort" />
+  <meta name="author" content="Drönarkörkortet Övning" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://longchank.github.io/dronarkort/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Drönarkörkortet – Öva inför A1/A3- och A2-provet" />
+  <meta property="og:description" content="Gratis övningsapp för svenska drönarkörkortet. Flashkort, quiz och simulerat prov för A1/A3 och A2." />
+  <meta property="og:url" content="https://longchank.github.io/dronarkort/" />
+  <meta property="og:locale" content="sv_SE" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Drönarkörkortet – Öva inför A1/A3- och A2-provet" />
+  <meta name="twitter:description" content="Gratis övningsapp för svenska drönarkörkortet. Flashkort, quiz och simulerat prov för A1/A3 och A2." />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Drönarkörkortet</h1>
+    <p class="subtitle">Öva inför A1/A3- och A2-provet</p>
+  </header>
+
+  <main>
+    <section class="controls">
+      <div class="control-group">
+        <label for="mode-select">Läge</label>
+        <div class="mode-buttons">
+          <button id="btn-flashcard" class="mode-btn active" data-mode="flashcard">Flashkort</button>
+          <button id="btn-quiz" class="mode-btn" data-mode="quiz">Quiz</button>
+          <button id="btn-exam-mode" class="mode-btn mode-btn-exam" data-mode="exam">Tentamen</button>
+        </div>
+      </div>
+
+      <div id="practice-filters" class="practice-filters">
+        <div class="control-group">
+          <label for="level-select">Nivå</label>
+          <select id="level-select">
+            <option value="all">Alla nivåer</option>
+            <option value="A1A3">A1/A3-examen</option>
+            <option value="A2">Enbart A2</option>
+          </select>
+        </div>
+
+        <div class="control-group">
+          <label for="chapter-select">Kapitel</label>
+          <select id="chapter-select">
+            <option value="all">Alla kapitel</option>
+            <option value="chapter1">1. Flygsäkerhet</option>
+            <option value="chapter2">2. Luftrumsregler</option>
+            <option value="chapter3">3. Drönarsystem</option>
+            <option value="chapter4">4. Metodik för piloter</option>
+            <option value="chapter5">5. Luftfartens begränsningar</option>
+            <option value="chapter6">6. Mänskliga faktorer</option>
+            <option value="chapter7">7. Meteorologi – grundläggande</option>
+            <option value="chapter8">8. Flygprestanda och teknisk kunskap</option>
+            <option value="chapter9">9. Operativa procedurer</option>
+            <option value="chapter10">10. Meteorologi – fördjupning (A2)</option>
+            <option value="chapter11">11. Fördjupad teknisk kunskap (A2)</option>
+            <option value="chapter12">12. Markrisk (A2)</option>
+          </select>
+        </div>
+
+        <button id="btn-shuffle" class="icon-btn" title="Blanda frågor">
+          &#8635; Blanda
+        </button>
+      </div>
+    </section>
+
+    <section class="progress-area" id="practice-progress">
+      <div class="progress-bar-wrap">
+        <div id="progress-bar" class="progress-bar"></div>
+      </div>
+      <div class="progress-text">
+        <span id="progress-label">0 / 0</span>
+        <span id="score-label" class="score-label hidden"></span>
+      </div>
+    </section>
+
+    <!-- FLASHCARD MODE -->
+    <section id="flashcard-container" class="card-container">
+      <div class="card-scene">
+        <div id="card" class="card" tabindex="0" role="button" aria-label="Klicka för att vända kortet">
+          <div class="card-face card-front">
+            <div class="card-image-wrap">
+              <img id="flash-img" src="" alt="Figur" class="card-img hidden" />
+            </div>
+            <div class="card-content">
+              <span class="card-badge" id="flash-chapter"></span>
+              <p id="flash-question" class="card-question"></p>
+              <span class="flip-hint">Klicka för att se svar</span>
+            </div>
+          </div>
+          <div class="card-face card-back">
+            <div class="card-content">
+              <p id="flash-answer" class="card-answer"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUIZ MODE -->
+    <section id="quiz-container" class="card-container hidden">
+      <div class="quiz-card">
+        <div class="quiz-image-wrap">
+          <img id="quiz-img" src="" alt="Figur" class="card-img hidden" />
+        </div>
+        <span class="card-badge" id="quiz-chapter"></span>
+        <p id="quiz-question" class="card-question"></p>
+        <div id="options-grid" class="options-grid"></div>
+        <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+      </div>
+    </section>
+
+    <!-- EMPTY STATE -->
+    <section id="empty-state" class="card-container hidden">
+      <div class="empty-card">
+        <p>Inga frågor matchar ditt val. Prova en annan nivå eller ett annat kapitel.</p>
+      </div>
+    </section>
+
+    <nav class="nav-buttons" id="practice-nav">
+      <button id="btn-prev" class="nav-btn">&#8592; Föregående</button>
+      <button id="btn-next" class="nav-btn">Nästa &#8594;</button>
+    </nav>
+
+    <!-- EXAM MODE -->
+    <section id="exam-container" class="hidden">
+
+      <!-- Start screen -->
+      <div id="exam-start-screen" class="exam-card">
+        <h2 class="exam-start-title">Välj tentamen</h2>
+        <p class="exam-start-desc">Simulera det riktiga provet. Frågor slumpas från alla kapitel och inga ledtrådar ges under provet.</p>
+        <div class="exam-type-grid">
+          <button class="exam-type-card" id="btn-start-a1a3">
+            <span class="exam-type-label">A1/A3</span>
+            <ul class="exam-info-list">
+              <li><span class="exam-info-val">40</span> frågor</li>
+              <li><span class="exam-info-val">30 min</span></li>
+              <li>Godkänt: <span class="exam-info-val">30 / 40</span></li>
+            </ul>
+            <span class="exam-type-start">Starta</span>
+          </button>
+          <button class="exam-type-card" id="btn-start-a2">
+            <span class="exam-type-label">A2</span>
+            <ul class="exam-info-list">
+              <li><span class="exam-info-val">30</span> frågor</li>
+              <li><span class="exam-info-val">45 min</span></li>
+              <li>Godkänt: <span class="exam-info-val">23 / 30</span></li>
+            </ul>
+            <span class="exam-type-start">Starta</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Question screen -->
+      <div id="exam-question-screen" class="hidden">
+        <div class="exam-header">
+          <span id="exam-progress-text" class="exam-progress-text">Fråga 1 av 30</span>
+          <span id="exam-timer" class="exam-timer">45:00</span>
+        </div>
+        <div class="exam-pbar-wrap">
+          <div id="exam-pbar" class="exam-pbar"></div>
+        </div>
+        <div class="quiz-card">
+          <div class="quiz-image-wrap">
+            <img id="exam-img" src="" alt="" class="card-img hidden" />
+          </div>
+          <span class="card-badge" id="exam-chapter-badge"></span>
+          <p id="exam-question-text" class="card-question"></p>
+          <div id="exam-options-grid" class="options-grid"></div>
+        </div>
+        <div class="nav-buttons" style="margin-top:1rem">
+          <button id="btn-exam-next" class="nav-btn" disabled>Nästa &#8594;</button>
+        </div>
+      </div>
+
+      <!-- Results screen -->
+      <div id="exam-results-screen" class="hidden">
+        <div class="exam-card exam-results-card">
+          <div id="exam-verdict" class="exam-verdict"></div>
+          <div class="exam-score-wrap">
+            <span id="exam-score-num" class="exam-score-num"></span>
+            <span id="exam-score-pct" class="exam-score-pct"></span>
+          </div>
+          <div id="exam-time-used" class="exam-time-used"></div>
+          <div id="exam-chapter-breakdown" class="exam-chapter-breakdown"></div>
+          <div class="exam-result-btns">
+            <button id="btn-exam-review" class="nav-btn">Granska svar</button>
+            <button id="btn-exam-restart" class="btn-primary">Nytt prov</button>
+          </div>
+        </div>
+        <div id="exam-review-list" class="exam-review-list hidden"></div>
+        <div class="nav-buttons" style="margin-top:1rem">
+          <button id="btn-exit-exam" class="nav-btn">&#8592; Tillbaka till övning</button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
