@@ -1,7 +1,7 @@
 # Drönarkörkortet – Övningsapp
 
 Gratis webbapp för att öva inför det svenska drönarkörkortet (A1/A3 och A2). Bygger på Transportstyrelsens officiella studiematerial.
-
+OBS: Allt är AI-genererat, jag tar inget ansvar för frågorna och svaren i appen. Bygg med Claude och har baserat allt på de 2 pdf filerna som transportstyrelsen tillhandahåller. 
 **Live:** https://longchank.github.io/dronarkorkort-quiz/
 
 ---
