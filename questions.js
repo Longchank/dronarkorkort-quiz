@@ -91,7 +91,7 @@ const questions = [
     id: 8, category: "chapter2", categoryName: "Luftrumsregler", level: "A1A3",
     question: "Vad är den maximala flyghöjden för drönare i den öppna kategorin?",
     answer: "120 meter ovan mark eller vatten",
-    options: ["50 meter", "100 meter", "120 meter ovan mark eller vatten", "150 meter"],
+    options: ["50 meter ovan mark eller vatten", "100 meter ovan mark eller vatten", "120 meter ovan mark eller vatten", "150 meter ovan mark eller vatten"],
     correctIndex: 2, image: null
   },
   {
@@ -223,14 +223,14 @@ const questions = [
     id: 23, category: "chapter3", categoryName: "Drönarsystem", level: "A1A3",
     question: "Vad är maxavståndet i Följ-mig-läget (Follow Me)?",
     answer: "50 meter från fjärrpiloten",
-    options: ["20 meter", "50 meter från fjärrpiloten", "100 meter", "500 meter"],
+    options: ["20 meter från fjärrpiloten", "50 meter från fjärrpiloten", "100 meter från fjärrpiloten", "500 meter från fjärrpiloten"],
     correctIndex: 1, image: null
   },
   {
     id: 24, category: "chapter3", categoryName: "Drönarsystem", level: "A1A3",
     question: "Vad är maxhastigheten i låghastighetläget (low-speed mode) för C2-drönare?",
     answer: "3 m/s (ca 11 km/h)",
-    options: ["1 m/s", "3 m/s (ca 11 km/h)", "5 m/s", "10 m/s"],
+    options: ["1 m/s (ca 3,6 km/h)", "3 m/s (ca 11 km/h)", "5 m/s (ca 18 km/h)", "10 m/s (ca 36 km/h)"],
     correctIndex: 1, image: null
   },
   {
@@ -385,7 +385,7 @@ const questions = [
     id: 37, category: "chapter5", categoryName: "Luftfartens begränsningar", level: "A1A3",
     question: "Hur långt ska en C3- eller C4-drönare hålla sig från bebyggda och rekreationsområden?",
     answer: "Minst 150 meter",
-    options: ["30 meter", "50 meter", "100 meter", "Minst 150 meter"],
+    options: ["Minst 30 meter", "Minst 50 meter", "Minst 100 meter", "Minst 150 meter"],
     correctIndex: 3, image: null
   },
   {
@@ -676,14 +676,14 @@ const questions = [
     id: 61, category: "chapter9", categoryName: "Operativa procedurer", level: "A1A3",
     question: "Vilket horisontellt avstånd ska en C2-drönare hålla till utomstående personer i normalläge?",
     answer: "Minst 30 meter horisontellt",
-    options: ["5 meter", "10 meter", "Minst 30 meter horisontellt", "50 meter"],
+    options: ["Minst 5 meter horisontellt", "Minst 10 meter horisontellt", "Minst 30 meter horisontellt", "Minst 50 meter horisontellt"],
     correctIndex: 2, image: null
   },
   {
     id: 62, category: "chapter9", categoryName: "Operativa procedurer", level: "A1A3",
     question: "Vilket horisontellt avstånd gäller för C2-drönare i låghastighetläge (max 3 m/s)?",
     answer: "Minst 5 meter horisontellt från utomstående personer",
-    options: ["1 meter", "Minst 5 meter horisontellt", "10 meter", "30 meter"],
+    options: ["Minst 1 meter horisontellt", "Minst 5 meter horisontellt", "Minst 10 meter horisontellt", "Minst 30 meter horisontellt"],
     correctIndex: 1, image: null
   },
   {
@@ -2063,10 +2063,10 @@ const questions = [
     question: "Vid vilken flyghöjd (enligt 1:1-regeln) ska ett minsta horisontellt avstånd på 50 meter hållas till utomstående?",
     answer: "Vid 50 meters flyghöjd – det horisontella avståndet ska motsvara flyghöjden",
     options: [
-      "Vid 25 meters flyghöjd",
+      "Vid 25 meters flyghöjd – horisontellt avstånd = flyghöjden",
       "Vid 50 meters flyghöjd – horisontellt avstånd = flyghöjden",
-      "Vid 100 meters flyghöjd",
-      "Vid 30 meters flyghöjd"
+      "Vid 100 meters flyghöjd – horisontellt avstånd = flyghöjden",
+      "Vid 30 meters flyghöjd – horisontellt avstånd = flyghöjden"
     ],
     correctIndex: 1, image: "imgs/a2_figur_51.png"
   },
@@ -2327,10 +2327,10 @@ const questions = [
     question: "Hur tillämpas 1:1-regeln om drönaren flyger på 80 meters höjd?",
     answer: "Det horisontella avståndet till närmaste utomstående ska vara minst 80 meter",
     options: [
-      "Det horisontella avståndet ska vara minst 40 meter (hälften av höjden)",
+      "Det horisontella avståndet ska vara minst 40 meter",
       "Det horisontella avståndet ska vara minst 80 meter",
       "Det horisontella avståndet ska vara minst 120 meter",
-      "1:1-regeln gäller inte vid höjder över 60 meter"
+      "Det horisontella avståndet ska vara minst 60 meter"
     ],
     correctIndex: 1, image: "imgs/a2_figur_51.png"
   },
